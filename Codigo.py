@@ -23,3 +23,29 @@ plt.title('$Espectro\,del\,Sol$')
 plt.show()
 plt.savefig('grafico.png')
 #guardo el grafico
+
+'''
+Lo que sigue es el codigo que usaremos para integrar los datos y obtener
+el espectro del Sol
+'''
+a = Longitud[0]
+b = Longitud[len(Flujo)-1]
+c = 0
+imp = 0
+par = 0
+delta = (b-a)/(len(Flujo)-1)
+
+def Flujo_x(x):
+    '''
+    A un valor de Longitud con posicion i le asigna un valor de la
+    Flujo con la misma posicion
+    '''
+    return Flujo[x]
+while c < (len(Flujo)-1):
+    if c % 2 == 0:
+        par += Flujo_x(c)
+
+    elif c % 2 == 1:
+        imp += Flujo_x(c)
+    c += 1
+print (delta*(Flujo[0]+ 4*imp + 2*par + Flujo[len(Flujo)-1]))/3
